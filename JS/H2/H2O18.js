@@ -3,9 +3,11 @@ var jos = {
   y: 125,
   schaal: 1.0,
   naam: "Jos",
-  
-  teken(muisPositieX) {
+
+  teken(muisPositieX,muisPositieY) {
     this.x = muisPositieX;
+    this.y = muisPositieY;
+    this.schaal = this.x / (0.25*width);
 
     // de regels hieronder tot en met pop() zorgen dat Jos wordt getekend. Je hoeft ze niet aan te passen.
     
@@ -39,12 +41,14 @@ function setup() {
   textFont("Verdana");
   textSize(14);
   noStroke();
-  frameRate(20);
+  frameRate(60);
 }
 
 function draw() {
   background('lavender');
-  jos.teken(500);
+  jos.teken(mouseX,constrain(mouseY,100,150));
+  
   
   text(jos.naam+" wordt getekend op x-positie (middelpunt neus) " + jos.x + ".",20,20);
+  text("De schaal van Jos is " + jos.schaal + ".",20,40);
 }

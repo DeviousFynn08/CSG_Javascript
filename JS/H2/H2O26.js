@@ -1,3 +1,7 @@
+var dood = false;
+
+var achtergrond = 'lavender';
+
 var vuur = {
   x: 225,
   y: 225,
@@ -25,18 +29,18 @@ var jos = {
   kleur: 'salmon',
   
   isVlakbij(gevaar) {
-    if (dist(this.x,this.y,gevaar.x,gevaar.y) < this.straal+gevaar.straal + 25) {
+    if (dist(this.x, this.y, gevaar.x, gevaar.y) < this.straal + gevaar.straal) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   },
   
   teken(muisPositieX,muisPositieY) {
-    this.x = constrain(muisPositieX,this.diameter / 2,canvas.width - this.diameter / 2);
-    this.y = constrain(muisPositieY,this.diameter / 2,canvas.height - this.diameter / 2);
-
+    if (!dood) {
+      this.x = constrain(muisPositieX,this.diameter / 2,canvas.width - this.diameter / 2);
+      this.y = constrain(muisPositieY,this.diameter / 2,canvas.height - this.diameter / 2);
+    }
     push();
     translate(this.x,this.y);
     noStroke();
@@ -60,6 +64,8 @@ var jos = {
 
 
 function setup() {
+  jos.x = jos.diameter / 2;
+  jos.y = jos.diameter / 2;
   canvas = createCanvas(450,450);
   canvas.parent('processing');
   noStroke();
@@ -67,10 +73,36 @@ function setup() {
 }
 
 function draw() {
-  background('lavender');
+  if (dood) {
+    achtergrond = 'red';
+    jos.kleur = 'red';
+    background(achtergrond);
+    vuur.teken();
+    jos.teken(jos.x, jos.y);
+    fill('white');
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text('Je bent dood\nKlik om te resetten', width/2, height/2);
+    return;
+  }
+  if (jos.isVlakbij(vuur)) {
+    dood = true;
+    achtergrond = 'red';
+    jos.kleur = 'red';
+  } else {
+    achtergrond = 'lavender';
+    jos.kleur = 'salmon';
+  }
+  background(achtergrond);
   vuur.teken();
-  
-  // voeg hier de if-else in
-  
   jos.teken(mouseX,mouseY);
+}
+
+function mousePressed() {
+  if (dood) {
+    dood = false;
+    jos.kleur = 'salmon';
+    jos.teken(jos.x, jos.y);
+  
+}
 }

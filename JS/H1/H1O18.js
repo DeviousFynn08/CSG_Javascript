@@ -5,19 +5,22 @@ var schaal = 0.25;
 function setup() {
   canvas = createCanvas(1000,300);
   canvas.parent('processing');
-  frameRate(15);
+  frameRate(30);
   colorMode(RGB,255,255,255,1);
   background(0,0,75,1);
 }
 
 function draw() {
-  background(0,0,75,1);
-  tekenSter(xPositie,yPositie);
+  background(0,0,75,0.1);
+  tekenSter(xPositie,yPositie,schaal);
+  xPositie+=1;
+  yPositie+=0.05;
+  schaal+=0.05
 }
 
-function tekenSter(x,y) {
+function tekenSter(x,y,s) {
   push();
-  scale(1);
+  scale(s);
   strokeWeight(2);
   stroke('white');
   fill('khaki');

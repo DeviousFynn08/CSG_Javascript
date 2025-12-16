@@ -1,7 +1,8 @@
-var dobbelSteen = {
+var totaalogen = 0;
+dobbelSteen = {
   x: 25,
   y: 25,
-  grootte: 400,
+  grootte: 200,
   ogen: null,
   diameterOgen: 50,
   R: null,
@@ -22,7 +23,7 @@ var dobbelSteen = {
 
     // hieronder volgt code om de stippen op de juiste plek te krijgen
     
-    fill('white');    
+    fill('black');    
     if (this.ogen!=1) {ellipse(this.x+this.grootte/6*1,this.y+this.grootte/6*1,this.diameterOgen,this.diameterOgen);}
     if (this.ogen==6) {ellipse(this.x+this.grootte/6*3,this.y+this.grootte/6*1,this.diameterOgen,this.diameterOgen);}
     if (this.ogen>3) {ellipse(this.x+this.grootte/6*5,this.y+this.grootte/6*1,this.diameterOgen,this.diameterOgen);}
@@ -40,7 +41,7 @@ function setup() {
   colorMode(RGB,255,255,255,1);
   noStroke();
   textFont("Georgia");
-  textSize(80);  
+  textSize(30);  
   frameRate(10);
   dobbelSteen.gooi();
 }
@@ -49,6 +50,10 @@ function draw() {
   background('lightcyan');
   if (mouseIsPressed) {
     dobbelSteen.gooi();
+    totaalogen += dobbelSteen.ogen;
+    
   }
+  
   dobbelSteen.teken();
+  text('Totaal: ' + totaalogen,300,150);
 }

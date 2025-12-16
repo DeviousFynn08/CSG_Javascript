@@ -3,7 +3,7 @@ var aantalBeeldjes = 6;
 var nummer = 0;
 
 function preload() {
-  for (var b = 0;b < aantalBeeldjes;b++) {
+  for (var b = 0;b < 2;b++) {
     nieuw_beeldje = loadImage("images/sprites/Jos_losse_beeldjes/Jos-" + b +".png");
     animatie.push(nieuw_beeldje);
   }
@@ -13,17 +13,17 @@ function setup() {
   canvas = createCanvas(460,460);
   canvas.parent('processing');
   noStroke();
-  frameRate(2);
+  frameRate(5);
   textFont("Georgia");
   textSize(18);
 }
 
 function draw() {
   background('lavender');
-  image(animatie[nummer],0,0);
+  image(animatie[nummer],80,160,300,300);
   nummer++;
 
-  if (nummer == aantalBeeldjes) {
+  if (nummer == 2) {
     nummer = 0;
   }
   

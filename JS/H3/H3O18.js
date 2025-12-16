@@ -36,7 +36,6 @@ class Vogel {
       noStroke();
       image(this.afbeelding,this.x,this.y,this.breedte,this.hoogte);
       fill(255,0,0,0.25);
-      rect(this.x + this.marge, this.y + this.marge,this.breedte - 2*this.marge,this.hoogte - 2*this.marge);
       pop();
   }
 }
@@ -67,8 +66,7 @@ class Obstakel {
   teken() {
     push();
     noStroke();
-    fill(0,0,255,0.7);
-    rect(this.x,this.y,this.b,this.h);
+    // Hitbox is nu transparant (niet zichtbaar)
     pop();
   }
 }

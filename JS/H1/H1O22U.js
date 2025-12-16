@@ -22,7 +22,7 @@ function draw() {
   mouseX=constrain(mouseX,25,width - 25);
   mouseY=constrain(mouseY,25,height - 25);
   afstand=dist(width / 2,height / 2,mouseX,mouseY);
-  fill('black');  
+  fill('black');   
   text("Beweeg de muis | x = " + round(mouseX) + " en y = " + round(mouseY) + " afstand = " + round(afstand),10,20);
   
   if (mouseX <= 30 || mouseX >= width - 30 || mouseY <= 30 || mouseY >= height - 30 || afstand <= 50 + 25 + 5) {

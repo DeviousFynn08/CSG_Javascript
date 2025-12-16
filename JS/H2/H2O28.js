@@ -45,16 +45,24 @@ var jos = {
       this.frameNummer = 5;
     }
 
-    this.x = constrain(this.x,0,canvas.width-raster.celGrootte);
+    this.x = constrain(this.x,0,canvas.width);
     this.y = constrain(this.y,0,canvas.height-raster.celGrootte);
   },
 
   wordtGeraakt(vijand) {
-    return false;
-  },
+    if (this.x == vijand.x && this.y == vijand.y) {
+      return  true;
 
+    }
+    else {
+    return false;
+  }
+},
   toon() {
     image(this.animatie[this.frameNummer],this.x,this.y,raster.celGrootte,raster.celGrootte);
+  },
+  waarde() {
+    return true;
   }
 }
 
@@ -103,8 +111,10 @@ function draw() {
   jos.beweeg();
   jos.toon();
   alice.toon();
+  alice.beweeg();
 
   if (jos.wordtGeraakt(alice)) {
-    noLoop();
+    background('red');
+    
   }
 }

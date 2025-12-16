@@ -20,12 +20,13 @@ var raster = {
 }
 
 var jos = {
-  x: 400,
+  x: 0,
   y: 300,
   animatie: [],
   aantalFrames: 6,
   frameNummer: 3,
   stapGrootte: null,
+  gehaald: false,
   
   beweeg() {
     if (keyIsDown(LEFT_ARROW)) {
@@ -47,6 +48,11 @@ var jos = {
     
     this.x = constrain(this.x,0,canvas.width-raster.celGrootte);
     this.y = constrain(this.y,0,canvas.height-raster.celGrootte);
+
+    // Zet gehaald op true als Jos rechts uit beeld is verdwenen
+    if (this.x >= canvas.width - raster.celGrootte) {
+      this.gehaald = true;
+    }
   },
   
   wordtGeraakt(vijand) {
@@ -110,6 +116,28 @@ function draw() {
   jos.toon();
   alice.toon();
   if (jos.wordtGeraakt(alice)) {
+    background('red');
     noLoop();
+    textSize(64); // Maak de tekst groter
+    text('Gefaald :(', 300, 300);
+  }
+  if (jos.gehaald == true) {
+    background('green');
+    noLoop();
+    textSize(64); // Maak de tekst groter
+    text('Gehaald!', 300, 300);
+  }
+}
+
+function keyPressed() {
+ 
+  if ((jos.gehaald || jos.wordtGeraakt(alice)) && keyCode === ENTER) {
+   
+    jos.x = 400;
+    jos.y = 300;
+    jos.gehaald = false;
+    alice.x = 700;
+    alice.y = 200;
+    loop();
   }
 }

@@ -15,17 +15,21 @@ function draw() {
   fill('black');
   text("aantal = " + aantal,10,20);    
   translate(225,225);
-  
-  // tekenen rode bladeren
-  
   fill(178, 34, 34,.7);
-  ellipse(0,0,400,50);
-  rotate(360 / aantal);
+  
 
+  
+  
   
   // gele vulkleur
 
   fill(255, 195, 0,0.5);
+  for (var n = 0;n < aantal;n++) {
+    background('black')
+    rect(0,0,75,75)
+    rotate(10 * n);
+
+  }
 
 
   if (keyIsDown(LEFT_ARROW) && aantal >= 2) {

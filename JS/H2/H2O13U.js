@@ -21,13 +21,14 @@ function preload() {
 function setup() {
   canvas = createCanvas(900,600);
   canvas.parent('processing');
-  frameRate(10);
+  frameRate(2);
   celGrootte = width / aantalKolommenRaster;
 }
 
 function draw() {
   background(brug);
   tekenRaster();
+  //frame = animatie[nummer];
 
   if (keyIsDown(LEFT_ARROW)) {
     xJos -= celGrootte;

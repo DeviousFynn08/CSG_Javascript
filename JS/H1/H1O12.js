@@ -1,5 +1,5 @@
-var xJOS = 350;
-var yJOS = 350;
+var xJOS;
+var yJOS;
 
 function setup() {
   canvas = createCanvas(450,450);
@@ -12,9 +12,9 @@ function draw() {
   background('lavender');
   fill('black');
   text("mouseX:" + round(mouseX) + " mouseY:" + round(mouseY),10,20);
-  text("xJOS:" + xJOS + " yJOS:" + yJOS,300,20);
-  translate(xJOS,yJOS);
-  
+  text("xJOS:" +  round(mouseX) + " yJOS:" + round (mouseY),300,20);
+  translate(mouseX,mouseY);
+ 
   // in de volgende regels wordt JOS getekend
 
   push();

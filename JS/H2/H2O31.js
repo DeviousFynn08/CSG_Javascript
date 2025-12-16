@@ -1,12 +1,16 @@
-var dobbelSteen = {
-  x: 25,
-  y: 25,
-  grootte: 200,
-  diameterOgen: 50,
-  ogen: null,
-  R: null,
-  G: null,
-  B: null,
+var totaalogen = 0;
+class dobbelSteen  { 
+  constructor(x) {
+    this.x  = x;
+    this.y  = 25;
+    this.grootte = 200;
+    this.diameterOgen = 50;
+    this.ogen = null;
+    this.R = null;
+    this.G = null;
+    this.B = null;
+
+  }
 
   gooi() {
     this.ogen = floor(random(0,6)) + 1;
@@ -14,7 +18,7 @@ var dobbelSteen = {
     this.R = round(random(0,255));
     this.G = round(random(0,255));
     this.B = round(random(0,255));
-  },
+  }
   
   teken() {
     push();
@@ -39,17 +43,28 @@ function setup() {
   canvas = createCanvas(700,300);
   canvas.parent('processing');
   colorMode(RGB,255,255,255,1);
-  noStroke();
   textFont("Georgia");
-  textSize(80);
-  frameRate(10);
+  textSize(65);
+  frameRate(15);
   background('lightcyan');
+  dob1 = new dobbelSteen(25);
+  dob2 = new dobbelSteen(250);
+  dob3 = new dobbelSteen(475);
+  
 }
 
 function draw() {
+   text('Totaal: ' + totaalogen, 200, 280);
+    
   if (mouseIsPressed) {
-    dobbelSteen.gooi();
+    dob1.gooi();
+    dob2.gooi();
+    dob3.gooi();
     background('lightcyan');
-    dobbelSteen.teken();
+    dob1.teken();
+    dob2.teken();
+    dob3.teken();
+  
+    totaalogen += dob1.ogen + dob2.ogen + dob3.ogen;
   }
 }

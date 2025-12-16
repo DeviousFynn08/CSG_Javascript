@@ -45,7 +45,7 @@ var jos = {
       this.frameNummer = 5;
     }
     
-    this.x = constrain(this.x,0,canvas.width-raster.celGrootte);
+    this.x = constrain(this.x,0,canvas.width);
     this.y = constrain(this.y,0,canvas.height-raster.celGrootte);
   },
   
@@ -60,8 +60,13 @@ var jos = {
   
   toon() {
     image(this.animatie[this.frameNummer],this.x,this.y,raster.celGrootte,raster.celGrootte);
+  },
+
+  gehaald() {
+    this.gehaald = true;
   }
-}
+
+  }
 
 
 var alice = {
